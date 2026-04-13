@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack — Macro Tracker</title>
+    <meta name="description" content="Track your daily meals and macronutrients with NutriTrack. Get instant macro breakdowns for every meal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient background blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header id="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="12" stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M9 14.5L12.5 18L19 11" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <h1>NutriTrack</h1>
+            </div>
+            <p class="tagline">Your daily macro companion</p>
+        </div>
+    </header>
+
+    <main id="app-main">
+        <!-- Daily Summary Section -->
+        <section class="daily-summary glass-card" id="daily-summary">
+            <h2>Daily Totals</h2>
+            <div class="summary-rings">
+                <div class="ring-container" id="ring-calories">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="ring-fill" cx="60" cy="60" r="52" data-macro="calories"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-value" id="total-calories">0</span>
+                        <span class="ring-name">kcal</span>
+                    </div>
+                </div>
+                <div class="ring-container" id="ring-protein">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="ring-fill ring-protein" cx="60" cy="60" r="52" data-macro="protein"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-value" id="total-protein">0</span>
+                        <span class="ring-name">Protein</span>
+                    </div>
+                </div>
+                <div class="ring-container" id="ring-carbs">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="ring-fill ring-carbs" cx="60" cy="60" r="52" data-macro="carbs"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-value" id="total-carbs">0</span>
+                        <span class="ring-name">Carbs</span>
+                    </div>
+                </div>
+                <div class="ring-container" id="ring-fat">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="ring-fill ring-fat" cx="60" cy="60" r="52" data-macro="fat"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-value" id="total-fat">0</span>
+                        <span class="ring-name">Fat</span>
+                    </div>
+                </div>
+                <div class="ring-container" id="ring-fiber">
+                    <svg class="progress-ring" viewBox="0 0 120 120">
+                        <circle class="ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="ring-fill ring-fiber" cx="60" cy="60" r="52" data-macro="fiber"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-value" id="total-fiber">0</span>
+                        <span class="ring-name">Fiber</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Micronutrients Section -->
+        <section class="micro-section glass-card" id="micro-section">
+            <div class="micro-header" data-action="toggle-micro">
+                <h2>Micronutrients</h2>
+                <div class="micro-header-right">
+                    <span class="micro-badge" id="micro-score-badge">—</span>
+                    <svg class="micro-toggle-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="micro-body" id="micro-body">
+                <div class="micro-body-inner">
+
+                    <!-- Vitamins Sub-section -->
+                    <div class="micro-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">💊</span>
+                            Vitamins
+                            <span class="micro-group-count">13</span>
+                        </h3>
+                        <div class="micro-bars-grid" id="vitamins-grid">
+                            <div class="micro-bar-row" data-micro="vitA">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin A</span><span class="micro-bar-value" id="micro-vitA">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitA" id="bar-vitA"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitA">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB1">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B1 <small>Thiamine</small></span><span class="micro-bar-value" id="micro-vitB1">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB1" id="bar-vitB1"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB1">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB2">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B2 <small>Riboflavin</small></span><span class="micro-bar-value" id="micro-vitB2">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB2" id="bar-vitB2"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB2">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB3">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B3 <small>Niacin</small></span><span class="micro-bar-value" id="micro-vitB3">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB3" id="bar-vitB3"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB3">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB5">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B5 <small>Pantothenic</small></span><span class="micro-bar-value" id="micro-vitB5">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB5" id="bar-vitB5"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB5">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB6">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin B6</span><span class="micro-bar-value" id="micro-vitB6">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB6" id="bar-vitB6"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB6">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB7">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B7 <small>Biotin</small></span><span class="micro-bar-value" id="micro-vitB7">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB7" id="bar-vitB7"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB7">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="folate">
+                                <div class="micro-bar-info"><span class="micro-bar-name">B9 <small>Folate</small></span><span class="micro-bar-value" id="micro-folate">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-folate" id="bar-folate"></div></div>
+                                <span class="micro-bar-pct" id="pct-folate">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitB12">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin B12</span><span class="micro-bar-value" id="micro-vitB12">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitB12" id="bar-vitB12"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitB12">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitC">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin C</span><span class="micro-bar-value" id="micro-vitC">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitC" id="bar-vitC"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitC">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitD">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin D</span><span class="micro-bar-value" id="micro-vitD">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitD" id="bar-vitD"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitD">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitE">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin E</span><span class="micro-bar-value" id="micro-vitE">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitE" id="bar-vitE"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitE">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="vitK">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Vitamin K</span><span class="micro-bar-value" id="micro-vitK">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-vitK" id="bar-vitK"></div></div>
+                                <span class="micro-bar-pct" id="pct-vitK">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Minerals Sub-section -->
+                    <div class="micro-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">⚡</span>
+                            Minerals
+                            <span class="micro-group-count">12</span>
+                        </h3>
+                        <div class="micro-bars-grid" id="minerals-grid">
+                            <div class="micro-bar-row" data-micro="calcium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Calcium</span><span class="micro-bar-value" id="micro-calcium">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-calcium" id="bar-calcium"></div></div>
+                                <span class="micro-bar-pct" id="pct-calcium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="iron">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Iron</span><span class="micro-bar-value" id="micro-iron">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-iron" id="bar-iron"></div></div>
+                                <span class="micro-bar-pct" id="pct-iron">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="magnesium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Magnesium</span><span class="micro-bar-value" id="micro-magnesium">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-magnesium" id="bar-magnesium"></div></div>
+                                <span class="micro-bar-pct" id="pct-magnesium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="phosphorus">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Phosphorus</span><span class="micro-bar-value" id="micro-phosphorus">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-phosphorus" id="bar-phosphorus"></div></div>
+                                <span class="micro-bar-pct" id="pct-phosphorus">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="potassium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Potassium</span><span class="micro-bar-value" id="micro-potassium">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-potassium" id="bar-potassium"></div></div>
+                                <span class="micro-bar-pct" id="pct-potassium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="sodium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Sodium</span><span class="micro-bar-value" id="micro-sodium">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-sodium" id="bar-sodium"></div></div>
+                                <span class="micro-bar-pct" id="pct-sodium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="zinc">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Zinc</span><span class="micro-bar-value" id="micro-zinc">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-zinc" id="bar-zinc"></div></div>
+                                <span class="micro-bar-pct" id="pct-zinc">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="copper">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Copper</span><span class="micro-bar-value" id="micro-copper">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-copper" id="bar-copper"></div></div>
+                                <span class="micro-bar-pct" id="pct-copper">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="manganese">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Manganese</span><span class="micro-bar-value" id="micro-manganese">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-manganese" id="bar-manganese"></div></div>
+                                <span class="micro-bar-pct" id="pct-manganese">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="selenium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Selenium</span><span class="micro-bar-value" id="micro-selenium">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-selenium" id="bar-selenium"></div></div>
+                                <span class="micro-bar-pct" id="pct-selenium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="chromium">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Chromium</span><span class="micro-bar-value" id="micro-chromium">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-chromium" id="bar-chromium"></div></div>
+                                <span class="micro-bar-pct" id="pct-chromium">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="iodine">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Iodine</span><span class="micro-bar-value" id="micro-iodine">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-iodine" id="bar-iodine"></div></div>
+                                <span class="micro-bar-pct" id="pct-iodine">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Essential Fats & Hydration -->
+                    <div class="micro-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">💧</span>
+                            Essential Fats & Hydration
+                        </h3>
+                        <div class="micro-bars-grid" id="essentials-grid">
+                            <div class="micro-bar-row" data-micro="omega3">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Omega-3</span><span class="micro-bar-value" id="micro-omega3">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-omega3" id="bar-omega3"></div></div>
+                                <span class="micro-bar-pct" id="pct-omega3">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="water">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Water <small>(from food)</small></span><span class="micro-bar-value" id="micro-water">0 <small>ml</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-water" id="bar-water"></div></div>
+                                <span class="micro-bar-pct" id="pct-water">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Meals Container -->
+        <section class="meals-section" id="meals-section">
+            <div class="section-header">
+                <h2>Your Meals</h2>
+                <button class="btn-add-meal" id="btn-add-meal" title="Add a new meal">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    Add Meal
+                </button>
+            </div>
+            <div class="meals-grid" id="meals-grid">
+                <!-- Meal cards injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="app-footer">
+        <p>Built with 💪 by Amrit &bull; NutriTrack v1.0</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
