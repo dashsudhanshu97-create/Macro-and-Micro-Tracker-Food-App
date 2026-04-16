@@ -6,7 +6,13 @@ const MICRO_CSV_COLS = [
     'vitA','vitB1','vitB2','vitB3','vitB5','vitB6','vitB7','folate','vitB12',
     'vitC','vitD','vitE','vitK',
     'calcium','iron','magnesium','phosphorus','potassium','sodium','zinc','copper','manganese','selenium','chromium','iodine',
-    'omega3','water'
+    'omega3','water',
+    'choline','creatine',
+    'leucine','isoleucine','valine',
+    'saturated_fat','monounsaturated_fat','polyunsaturated_fat','omega6',
+    'sugar','starch',
+    'soluble_fiber','insoluble_fiber',
+    'chloride','molybdenum'
 ];
 
 function parseCSV(csv) {
@@ -91,9 +97,30 @@ const MICRO_RDI = {
     selenium:   { rdi: 55,    unit: 'mcg', label: 'Selenium' },
     chromium:   { rdi: 35,    unit: 'mcg', label: 'Chromium' },
     iodine:     { rdi: 150,   unit: 'mcg', label: 'Iodine' },
-    // Essentials
+    // Essential Fats & Hydration
     omega3:     { rdi: 1.6,   unit: 'g',   label: 'Omega-3' },
-    water:      { rdi: 700,   unit: 'ml',  label: 'Water (food)' }
+    water:      { rdi: 700,   unit: 'ml',  label: 'Water (food)' },
+    // Other Essentials
+    choline:    { rdi: 550,   unit: 'mg',  label: 'Choline' },
+    creatine:   { rdi: 3,     unit: 'g',   label: 'Creatine' },
+    // BCAAs (Amino Acids)
+    leucine:    { rdi: 2.7,   unit: 'g',   label: 'Leucine' },
+    isoleucine: { rdi: 1.4,   unit: 'g',   label: 'Isoleucine' },
+    valine:     { rdi: 1.8,   unit: 'g',   label: 'Valine' },
+    // Fat Breakdown
+    saturated_fat:       { rdi: 22,  unit: 'g', label: 'Saturated Fat' },
+    monounsaturated_fat: { rdi: 33,  unit: 'g', label: 'Monounsaturated' },
+    polyunsaturated_fat: { rdi: 22,  unit: 'g', label: 'Polyunsaturated' },
+    omega6:              { rdi: 17,  unit: 'g', label: 'Omega-6' },
+    // Carb Breakdown
+    sugar:   { rdi: 50,  unit: 'g', label: 'Sugar' },
+    starch:  { rdi: 200, unit: 'g', label: 'Starch' },
+    // Fiber Breakdown
+    soluble_fiber:   { rdi: 10, unit: 'g', label: 'Soluble Fiber' },
+    insoluble_fiber: { rdi: 20, unit: 'g', label: 'Insoluble Fiber' },
+    // Additional Minerals
+    chloride:   { rdi: 2300, unit: 'mg',  label: 'Chloride' },
+    molybdenum: { rdi: 45,   unit: 'mcg', label: 'Molybdenum' }
 };
 
 const MICRO_KEYS = Object.keys(MICRO_RDI);
@@ -661,8 +688,9 @@ function updateMicronutrients(totals) {
         if (pctEl) {
             pctEl.textContent = `${Math.round(pct)}%`;
             // Color code: green >= 80%, yellow 40-79%, red < 40%
-            if (key === 'sodium') {
-                // Sodium is reverse: lower is better
+            // For 'limit' nutrients (sodium, saturated fat, sugar), lower is better
+            const limitKeys = ['sodium', 'saturated_fat', 'sugar'];
+            if (limitKeys.includes(key)) {
                 pctEl.className = 'micro-bar-pct' + (pct > 90 ? ' pct-over' : pct > 60 ? ' pct-warn' : ' pct-good');
             } else {
                 pctEl.className = 'micro-bar-pct' + (pct >= 80 ? ' pct-good' : pct >= 40 ? ' pct-warn' : ' pct-low');
@@ -685,6 +713,20 @@ function updateMicronutrients(totals) {
     }
 }
 
+// Scroll buttons for micro-tabs
+const scrollLeftBtn = document.getElementById('scroll-left');
+const scrollRightBtn = document.getElementById('scroll-right');
+const microTabs = document.getElementById('micro-tabs');
+
+if (scrollLeftBtn && scrollRightBtn && microTabs) {
+    scrollLeftBtn.addEventListener('click', () => {
+        microTabs.scrollBy({ left: -150, behavior: 'smooth' });
+    });
+    scrollRightBtn.addEventListener('click', () => {
+        microTabs.scrollBy({ left: 150, behavior: 'smooth' });
+    });
+}
+
 // Toggle micronutrients panel
 document.addEventListener('click', (e) => {
     const toggleTarget = e.target.closest('[data-action="toggle-micro"]');
@@ -692,6 +734,21 @@ document.addEventListener('click', (e) => {
         microExpanded = !microExpanded;
         const section = document.getElementById('micro-section');
         section.classList.toggle('expanded', microExpanded);
+    }
+
+    // Tab navigation within micronutrients
+    const tab = e.target.closest('.micro-tab');
+    if (tab) {
+        const targetId = tab.dataset.target;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            // Update active tab
+            document.querySelectorAll('.micro-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Smooth scroll to section
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 });
 

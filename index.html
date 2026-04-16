@@ -104,6 +104,23 @@
                 </div>
             </div>
             <div class="micro-body" id="micro-body">
+                <div class="micro-tabs-wrapper">
+                    <button class="tab-scroll-btn" id="scroll-left" title="Scroll left">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="micro-tabs" id="micro-tabs">
+                        <button class="micro-tab active" data-target="vitamins-grid">💊 Vitamins</button>
+                        <button class="micro-tab" data-target="minerals-grid">⚡ Minerals</button>
+                        <button class="micro-tab" data-target="fat-breakdown-group">🫒 Fats</button>
+                        <button class="micro-tab" data-target="carb-breakdown-group">🍞 Carbs</button>
+                        <button class="micro-tab" data-target="fiber-breakdown-group">🌾 Fiber</button>
+                        <button class="micro-tab" data-target="bcaa-group">💪 BCAAs</button>
+                        <button class="micro-tab" data-target="essentials-group">🧬 Other</button>
+                    </div>
+                    <button class="tab-scroll-btn" id="scroll-right" title="Scroll right">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
                 <div class="micro-body-inner">
 
                     <!-- Vitamins Sub-section -->
@@ -187,7 +204,7 @@
                         <h3 class="micro-group-title">
                             <span class="micro-group-icon">⚡</span>
                             Minerals
-                            <span class="micro-group-count">12</span>
+                            <span class="micro-group-count">14</span>
                         </h3>
                         <div class="micro-bars-grid" id="minerals-grid">
                             <div class="micro-bar-row" data-micro="calcium">
@@ -250,20 +267,139 @@
                                 <div class="micro-bar-track"><div class="micro-bar-fill fill-iodine" id="bar-iodine"></div></div>
                                 <span class="micro-bar-pct" id="pct-iodine">0%</span>
                             </div>
+                            <div class="micro-bar-row" data-micro="chloride">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Chloride</span><span class="micro-bar-value" id="micro-chloride">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-chloride" id="bar-chloride"></div></div>
+                                <span class="micro-bar-pct" id="pct-chloride">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="molybdenum">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Molybdenum</span><span class="micro-bar-value" id="micro-molybdenum">0 <small>mcg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-molybdenum" id="bar-molybdenum"></div></div>
+                                <span class="micro-bar-pct" id="pct-molybdenum">0%</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Essential Fats & Hydration -->
-                    <div class="micro-group">
+                    <!-- Fat Breakdown -->
+                    <div class="micro-group" id="fat-breakdown-group">
                         <h3 class="micro-group-title">
-                            <span class="micro-group-icon">💧</span>
-                            Essential Fats & Hydration
+                            <span class="micro-group-icon">🫒</span>
+                            Fat Breakdown
+                            <span class="micro-group-count">5</span>
                         </h3>
-                        <div class="micro-bars-grid" id="essentials-grid">
+                        <div class="micro-bars-grid">
+                            <div class="micro-bar-row" data-micro="saturated_fat">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Saturated <small>⚠ limit</small></span><span class="micro-bar-value" id="micro-saturated_fat">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-saturated_fat" id="bar-saturated_fat"></div></div>
+                                <span class="micro-bar-pct" id="pct-saturated_fat">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="monounsaturated_fat">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Monounsaturated</span><span class="micro-bar-value" id="micro-monounsaturated_fat">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-monounsaturated_fat" id="bar-monounsaturated_fat"></div></div>
+                                <span class="micro-bar-pct" id="pct-monounsaturated_fat">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="polyunsaturated_fat">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Polyunsaturated</span><span class="micro-bar-value" id="micro-polyunsaturated_fat">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-polyunsaturated_fat" id="bar-polyunsaturated_fat"></div></div>
+                                <span class="micro-bar-pct" id="pct-polyunsaturated_fat">0%</span>
+                            </div>
                             <div class="micro-bar-row" data-micro="omega3">
                                 <div class="micro-bar-info"><span class="micro-bar-name">Omega-3</span><span class="micro-bar-value" id="micro-omega3">0 <small>g</small></span></div>
                                 <div class="micro-bar-track"><div class="micro-bar-fill fill-omega3" id="bar-omega3"></div></div>
                                 <span class="micro-bar-pct" id="pct-omega3">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="omega6">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Omega-6</span><span class="micro-bar-value" id="micro-omega6">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-omega6" id="bar-omega6"></div></div>
+                                <span class="micro-bar-pct" id="pct-omega6">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carb Breakdown -->
+                    <div class="micro-group" id="carb-breakdown-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">🍞</span>
+                            Carb Breakdown
+                            <span class="micro-group-count">2</span>
+                        </h3>
+                        <div class="micro-bars-grid">
+                            <div class="micro-bar-row" data-micro="sugar">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Sugar <small>⚠ limit</small></span><span class="micro-bar-value" id="micro-sugar">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-sugar" id="bar-sugar"></div></div>
+                                <span class="micro-bar-pct" id="pct-sugar">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="starch">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Starch</span><span class="micro-bar-value" id="micro-starch">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-starch" id="bar-starch"></div></div>
+                                <span class="micro-bar-pct" id="pct-starch">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fiber Breakdown -->
+                    <div class="micro-group" id="fiber-breakdown-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">🌾</span>
+                            Fiber Breakdown
+                            <span class="micro-group-count">2</span>
+                        </h3>
+                        <div class="micro-bars-grid">
+                            <div class="micro-bar-row" data-micro="soluble_fiber">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Soluble Fiber</span><span class="micro-bar-value" id="micro-soluble_fiber">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-soluble_fiber" id="bar-soluble_fiber"></div></div>
+                                <span class="micro-bar-pct" id="pct-soluble_fiber">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="insoluble_fiber">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Insoluble Fiber</span><span class="micro-bar-value" id="micro-insoluble_fiber">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-insoluble_fiber" id="bar-insoluble_fiber"></div></div>
+                                <span class="micro-bar-pct" id="pct-insoluble_fiber">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amino Acids (BCAAs) -->
+                    <div class="micro-group" id="bcaa-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">💪</span>
+                            Amino Acids <small>BCAAs</small>
+                            <span class="micro-group-count">3</span>
+                        </h3>
+                        <div class="micro-bars-grid">
+                            <div class="micro-bar-row" data-micro="leucine">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Leucine</span><span class="micro-bar-value" id="micro-leucine">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-leucine" id="bar-leucine"></div></div>
+                                <span class="micro-bar-pct" id="pct-leucine">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="isoleucine">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Isoleucine</span><span class="micro-bar-value" id="micro-isoleucine">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-isoleucine" id="bar-isoleucine"></div></div>
+                                <span class="micro-bar-pct" id="pct-isoleucine">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="valine">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Valine</span><span class="micro-bar-value" id="micro-valine">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-valine" id="bar-valine"></div></div>
+                                <span class="micro-bar-pct" id="pct-valine">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Essentials -->
+                    <div class="micro-group" id="essentials-group">
+                        <h3 class="micro-group-title">
+                            <span class="micro-group-icon">🧬</span>
+                            Other Essentials
+                        </h3>
+                        <div class="micro-bars-grid">
+                            <div class="micro-bar-row" data-micro="choline">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Choline</span><span class="micro-bar-value" id="micro-choline">0 <small>mg</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-choline" id="bar-choline"></div></div>
+                                <span class="micro-bar-pct" id="pct-choline">0%</span>
+                            </div>
+                            <div class="micro-bar-row" data-micro="creatine">
+                                <div class="micro-bar-info"><span class="micro-bar-name">Creatine</span><span class="micro-bar-value" id="micro-creatine">0 <small>g</small></span></div>
+                                <div class="micro-bar-track"><div class="micro-bar-fill fill-creatine" id="bar-creatine"></div></div>
+                                <span class="micro-bar-pct" id="pct-creatine">0%</span>
                             </div>
                             <div class="micro-bar-row" data-micro="water">
                                 <div class="micro-bar-info"><span class="micro-bar-name">Water <small>(from food)</small></span><span class="micro-bar-value" id="micro-water">0 <small>ml</small></span></div>

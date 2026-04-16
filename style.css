@@ -829,6 +829,77 @@ main {
     transform: rotate(180deg);
 }
 
+/* Micro Tab Navigation */
+.micro-tabs-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 6px 14px;
+    margin: 0 0 0;
+}
+
+.tab-scroll-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s var(--ease-out);
+}
+
+.tab-scroll-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.micro-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    flex: 1;
+}
+
+.micro-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.micro-tab {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out);
+    white-space: nowrap;
+}
+
+.micro-tab:hover {
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--text-secondary);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.micro-tab.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15));
+    color: var(--text-primary);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+}
+
 .micro-body {
     max-height: 0;
     overflow: hidden;
@@ -954,6 +1025,27 @@ main {
 /* Essentials */
 .fill-omega3   { background: linear-gradient(90deg, #0284c7, #38bdf8); }
 .fill-water    { background: linear-gradient(90deg, #0ea5e9, #67e8f9); }
+/* Additional Minerals */
+.fill-chloride   { background: linear-gradient(90deg, #78716c, #a8a29e); }
+.fill-molybdenum { background: linear-gradient(90deg, #57534e, #78716c); }
+/* Fat Breakdown */
+.fill-saturated_fat       { background: linear-gradient(90deg, #dc2626, #f87171); }
+.fill-monounsaturated_fat { background: linear-gradient(90deg, #65a30d, #84cc16); }
+.fill-polyunsaturated_fat { background: linear-gradient(90deg, #0d9488, #14b8a6); }
+.fill-omega6              { background: linear-gradient(90deg, #0369a1, #0ea5e9); }
+/* Carb Breakdown */
+.fill-sugar  { background: linear-gradient(90deg, #e11d48, #fb7185); }
+.fill-starch { background: linear-gradient(90deg, #d97706, #fbbf24); }
+/* Fiber Breakdown */
+.fill-soluble_fiber   { background: linear-gradient(90deg, #16a34a, #4ade80); }
+.fill-insoluble_fiber { background: linear-gradient(90deg, #15803d, #22c55e); }
+/* Amino Acids (BCAAs) */
+.fill-leucine    { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.fill-isoleucine { background: linear-gradient(90deg, #6d28d9, #8b5cf6); }
+.fill-valine     { background: linear-gradient(90deg, #5b21b6, #7c3aed); }
+/* Other Essentials */
+.fill-choline  { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+.fill-creatine { background: linear-gradient(90deg, #be185d, #ec4899); }
 
 /* Glow effect on bars with high fill */
 .micro-bar-fill::after {
