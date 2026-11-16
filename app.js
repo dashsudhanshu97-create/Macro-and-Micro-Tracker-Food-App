@@ -547,22 +547,37 @@ function refreshMealCard(card, meal) {
 }
 
 // ===== Macro Calculations =====
+
 function calcFoodMacros(foodKey, qty) {
     if (!foodKey || !qty || !FOOD_DB[foodKey]) {
         return emptyNutrients();
     }
-    const per100 = FOOD_DB[foodKey].per100;
-    const factor = parseFloat(qty) / 100;
+
+    const food = FOOD_DB[foodKey];
+    const nutrients = food.per100;
+    const quantity = parseFloat(qty);
+
+    // Piece-based foods: nutrition values are per piece.
+    // Gram/ml-based foods: nutrition values are per 100g/100ml.
+    const factor = food.unit === 'piece'
+        ? quantity
+        : quantity / 100;
+
     const result = {
-        calories: per100.calories * factor,
-        carbs: per100.carbs * factor,
-        protein: per100.protein * factor,
-        fat: per100.fat * factor,
-        fiber: per100.fiber * factor
+        calories: nutrients.calories * factor,
+        carbs: nutrients.carbs * factor,
+        protein: nutrients.protein * factor,
+        fat: nutrients.fat * factor,
+        fiber: nutrients.fiber * factor
     };
-    MICRO_KEYS.forEach(k => { result[k] = (per100[k] || 0) * factor; });
+
+    MICRO_KEYS.forEach(key => {
+        result[key] = (nutrients[key] || 0) * factor;
+    });
+
     return result;
 }
+
 
 function calcMealMacros(meal) {
     const totals = emptyNutrients();
