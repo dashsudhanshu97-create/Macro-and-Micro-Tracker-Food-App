@@ -1270,3 +1270,58 @@ input[type="number"] {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+
+/* ===== FIX: Food Dropdown Layering ===== */
+
+/* Allow dropdown to extend outside the meal card */
+.meal-card {
+    overflow: visible;
+    position: relative;
+}
+
+/* Keep the currently active meal above other meal cards */
+.meal-card:has(.custom-dropdown-menu.open) {
+    z-index: 50;
+}
+
+/* Keep normal collapsed animation intact */
+.meal-body {
+    overflow: hidden;
+}
+
+/* Allow dropdown to escape the expanded meal body */
+.meal-card.expanded .meal-body {
+    overflow: visible;
+}
+
+/* Put the active dropdown wrapper above nearby elements */
+.food-select-wrap:has(.custom-dropdown-menu.open) {
+    z-index: 100;
+}
+
+/* Dropdown appearance */
+.custom-dropdown-menu {
+    z-index: 9999;
+    background: #12121e !important;
+    opacity: 1;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+}
+
+/* Keep options background solid */
+.dropdown-options {
+    background: #12121e;
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.dropdown-option {
+    background: #12121e;
+}
+
+.dropdown-option:hover {
+    background: #252840;
+}
